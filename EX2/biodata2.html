@@ -5,6 +5,35 @@
     <link rel="stylesheet" href="cssfile.css">
     <style>
         body{
+            border: 10px;
+            padding: 20px;
+        }
+        h1 {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color:rgb(124, 23, 106);
+            padding: 10px;
+        }
+        .container {
+            display: flex;
+            height: 100vh; 
+            width: 100%;
+        }
+        .left-column {
+            flex: 1;
+            background-color: rgb(124, 23, 106);
+            width: 10%; 
+            height: 100%;
+            align-items: center;
+            padding-left: 0%;
+            overflow-y: hidden;
+        }
+        .right-column {
+            flex: 3; 
+            background-color: rgb(169, 29, 29);
+            width: 90%; 
+            height: 100%;
+        }
+        body{
             border: 0px;
             padding: 0px;
         }

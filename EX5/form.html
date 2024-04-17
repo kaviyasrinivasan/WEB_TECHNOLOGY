@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EB Bill Calculator</title>
+<style>
+  .container {
+    display: flex;
+    align-items: center;
+    height: 90vh;
+    flex-direction: column;
+    max-width: 500px;
+        margin: 15px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+   #info {
+    display:none;
+    border: 2px solid #11000f;
+    padding: 20px;
+    margin-top: 20px;
+    max-width: 400px;
+    text-align: center;
+  }
+</style>
+</head>
+<body  bgcolor="#b0e0e6">
+ <div class="container">
+<br><br>
+ <img src = "https://www.livechennai.com/businesslistings/News_photo/TANGEDCO-31421.jpg" width="250" height="130px" align="right"/>
+  <h1>EB Bill Calculator</h1>
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" placeholder="Enter your name"><br>
+  
+  <label for="currentMonth">Current Month Unit (KWh):</label>
+  <input type="number" id="currentMonth" name="currentMonth"><br>
+  
+  <label for="previousMonth">Previous Month Unit (KWh):</label>
+  <input type="number" id="previousMonth" name="previousMonth"><br>
+  
+  <button onclick="calculateEB()">Calculate</button>
+  
+  <div id="info"></div>
+</div>
+  <script>
+    function calculateEB() {
+      var ebAmount = 0;
+      var tariff = 0;
+      var ebUnits = 0;
+      var name = document.getElementById("name").value;
+      var currentMonth = parseFloat(document.getElementById("currentMonth").value);
+      var previousMonth = parseFloat(document.getElementById("previousMonth").value);
+
+      if (name === '') {
+        document.getElementById("info").innerHTML = "<b style='background-color: #FFFF00; color:red;'>Please enter a name.</b>";
+        return;
+      }
+
+      if (isNaN(currentMonth) || isNaN(previousMonth)) {
+        document.getElementById("info").innerHTML = "<b style='background-color: #FFFF00; color:red;'>Please enter valid values for current month and previous month units.</b>";
+        return;
+      }
+
+      ebUnits = currentMonth - previousMonth;
+      if (ebUnits > 0 && ebUnits <= 100) {
+        tariff = 0;
+      } else if (ebUnits <= 200) {
+        ebAmount = (ebUnits - 100) * 2.25;
+        tariff = ebAmount;
+      } else if (ebUnits <= 400) {
+        ebAmount = 225 + ((ebUnits - 200) * 4.5);
+        tariff = ebAmount;
+      } else if (ebUnits <= 500) {
+        ebAmount = 1125 + ((ebUnits - 400) * 6);
+        tariff = ebAmount;
+      } else if (ebUnits <= 600) {
+        ebAmount = 1950 + ((ebUnits - 500) * 8);
+        tariff = ebAmount;
+      } else if (ebUnits <= 800) {
+        ebAmount = 2750 + ((ebUnits - 600) * 9);
+        tariff = ebAmount;
+      } else if (ebUnits <= 1000) {
+        ebAmount = 4550 + ((ebUnits - 800) * 10);
+        tariff = ebAmount;
+      } else if (ebUnits > 1000) {
+        ebAmount = 6550 + ((ebUnits - 1000) * 11);
+        tariff = ebAmount;
+      } else {
+        tariff = 0;
+      }
+
+      document.getElementById("info").innerHTML = "Name: " + name + "<br>Current Month Unit (KWh): " + currentMonth + "<br>Previous Month Unit (KWh): " + previousMonth + "<br>Units Consumed: " + ebUnits + "<br>EB Bill Amount: <b style='background-color: #FFFF00; color:red;'>&#8377; " + tariff.toFixed(2) + "</b>";
+      document.getElementById("info").style.display = "block";
+    }
+  </script>
+</body>
+</html>

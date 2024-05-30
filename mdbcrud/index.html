@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        label
+{
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input[type="text"],
+        select {
+            width: calc(100% - 22px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"],
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #0056b3;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .radio-container {
+            margin-bottom: 10px;
+        }
+        .radio-label {
+            margin-right: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>NOTICE DETAILS</h1>
+    <form id="form" method="get">
+        <label for="username">USERNAME:</label>
+        <input type="text" id="username" name="username" value=""><br>
+       
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" value=""><br>
+       
+        <label for="branch">BRANCH:</label>
+        <select id="branch" name="branch">
+            <option value="select">Select any one Branch</option>
+            <option value="IT">IT</option>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="CHEM">CHEM</option>
+        </select><br>
+       
+
+        <label for="noticeno">NOTICE NO:</label>
+        <input type="text" id="noticeno" name="noticeno" value=""><br>
+       
+        <label for="content">CONTENT:</label>
+        <input type="text" id="content" name="content" value=""><br>
+       
+        <div class="button-container">
+            <button type="submit" onclick="set('/insert', event)">INSERT</button>
+            <button type="submit" onclick="set('/delete', event)">DELETE</button>
+            <button type="submit" onclick="set('/update', event)">UPDATE</button>
+            <button type="submit" onclick="set('/display', event)">DETAILS</button>
+        </div>
+    </form>
+
+    <script>
+        function set(path, event) {
+            event.preventDefault();
+            document.getElementById('form').action = 'http://localhost:7050' + path;
+            document.getElementById('form').submit();         }
+    </script>
+</body>
+</html>
